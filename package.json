@@ -1,0 +1,58 @@
+{
+  "name": "retext-pos",
+  "version": "0.1.0",
+  "description": "Retext POS (part-of-speech) tagger",
+  "keywords": [
+    "part",
+    "of",
+    "speech",
+    "pos",
+    "tagger",
+    "retext"
+  ],
+  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pos": "^0.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^0.7.4",
+    "istanbul": "^0.3.0",
+    "jscs": "^1.5.3",
+    "mocha": "~1.20.1",
+    "retext": "^0.1.0-rc.4",
+    "retext-visit": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-pos.git"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports spec/retext-pos.spec.js",
+    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports spec/retext-pos.spec.js",
+    "lint": "npm run lint-api && npm run lint-test && npm run lint-style",
+    "lint-api": "node_modules/.bin/eslint index.js --env node --env browser --rule 'quotes: [2, single]'",
+    "lint-test": "node_modules/.bin/eslint spec/retext-pos.spec.js --env node --env mocha --rule 'quotes: [2, single]'",
+    "lint-style": "node_modules/.bin/jscs index.js spec/retext-pos.spec.js --reporter=inline",
+    "install-browser-test": "npm install browserify",
+    "build-browser-test": "node_modules/.bin/browserify spec/retext-pos.spec.js -o spec/browser.spec.js",
+    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- spec/retext-pos.spec.js",
+    "make": "npm run lint && npm run coverage"
+  },
+  "testling": {
+    "files": "spec/retext-pos.spec.js",
+    "harness": "mocha",
+    "browsers": [
+      "iexplore/latest",
+      "chrome/latest",
+      "chrome/canary",
+      "firefox/latest",
+      "firefox/nightly",
+      "opera/latest",
+      "opera/next",
+      "safari/latest",
+      "iphone/latest",
+      "android-browser/latest"
+    ]
+  }
+}
