@@ -1,5 +1,5 @@
 
-n.n.n / 2014-07-31
+0.1.2 / 2014-07-31
 ==================
 
  * Fix a bug where on remove a parent would not recalculate (fixes #2)
