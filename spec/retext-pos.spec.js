@@ -53,7 +53,12 @@ describe('pos()', function () {
         'attached, and without value', function () {
             tree.visitType(tree.WORD_NODE, function (wordNode) {
                 wordNode.remove();
-                wordNode[0].fromString();
+                assert(wordNode.data.partOfSpeech !== null);
+
+                while (wordNode.head) {
+                    wordNode.head.remove();
+                }
+
                 assert(wordNode.data.partOfSpeech === null);
             });
         }

@@ -54,12 +54,19 @@ function onchange() {
     self.data.partOfSpeech = value ? tagger.tag([value])[0][1] : null;
 }
 
+function onremove(previousParent) {
+    onchangeinparent(previousParent);
+}
+
 function attach(retext) {
     var TextOM = retext.parser.TextOM;
 
     TextOM.WordNode.on('changetextinside', onchange);
     TextOM.WordNode.on('removeinside', onchange);
     TextOM.WordNode.on('insertinside', onchange);
+    TextOM.WordNode.on('remove', onchange);
+    TextOM.WordNode.on('remove', onremove);
+    TextOM.WordNode.on('insert', onchange);
 }
 
 exports.attach = attach;
