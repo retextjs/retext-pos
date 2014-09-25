@@ -1,16 +1,37 @@
 'use strict';
 
-exports = module.exports = function () {};
+/**
+ * Module dependencies.
+ */
 
-var pos, tagger;
+var posjs,
+    tagger;
 
-pos = require('pos');
-tagger = new pos.Tagger();
+posjs = require('pos');
+tagger = new posjs.Tagger();
+
+/**
+ * Define `pos`.
+ */
+
+function pos() {}
+
+/**
+ * A POS change inside a parent.
+ *
+ * @param {Parent} parent
+ */
 
 function onchangeinparent(parent) {
-    var values = [],
-        wordNodes = [],
-        iterator, length, taggedValues, node, value;
+    var values,
+        wordNodes,
+        index,
+        taggedValues,
+        node,
+        value;
+
+    values = [];
+    wordNodes = [];
 
     node = parent.head;
 
@@ -31,17 +52,24 @@ function onchangeinparent(parent) {
 
     taggedValues = tagger.tag(values);
 
-    iterator = -1;
-    length = taggedValues.length;
+    index = taggedValues.length;
 
-    while (++iterator < length) {
-        wordNodes[iterator].data.partOfSpeech = taggedValues[iterator][1];
+    while (index--) {
+        wordNodes[index].data.partOfSpeech = taggedValues[index][1];
     }
 }
 
+/**
+ * A handler for change inside a word.
+ *
+ * @this {WordNode}
+ */
+
 function onchange() {
-    var self = this,
+    var self,
         value;
+
+    self = this;
 
     if (self.parent) {
         onchangeinparent(self.parent);
@@ -54,19 +82,44 @@ function onchange() {
     self.data.partOfSpeech = value ? tagger.tag([value])[0][1] : null;
 }
 
+/**
+ * `remove` handler.
+ *
+ * @param {Parent} previousParent
+ * @this {WordNode}
+ */
+
 function onremove(previousParent) {
     onchangeinparent(previousParent);
 }
 
-function attach(retext) {
-    var TextOM = retext.parser.TextOM;
+/**
+ * Define `attach`.
+ *
+ * @param {Retext} retext - Instance of Retext.
+ */
 
-    TextOM.WordNode.on('changetextinside', onchange);
-    TextOM.WordNode.on('removeinside', onchange);
-    TextOM.WordNode.on('insertinside', onchange);
-    TextOM.WordNode.on('remove', onchange);
-    TextOM.WordNode.on('remove', onremove);
-    TextOM.WordNode.on('insert', onchange);
+function attach(retext) {
+    var WordNode;
+
+    WordNode = retext.parser.TextOM.WordNode;
+
+    WordNode.on('changetextinside', onchange);
+    WordNode.on('removeinside', onchange);
+    WordNode.on('insertinside', onchange);
+    WordNode.on('remove', onchange);
+    WordNode.on('remove', onremove);
+    WordNode.on('insert', onchange);
 }
 
-exports.attach = attach;
+/**
+ * Expose `attach`.
+ */
+
+pos.attach = attach;
+
+/**
+ * Expose `pos`.
+ */
+
+module.exports = pos;
