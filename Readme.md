@@ -49,4 +49,4 @@ None, the plugin automatically detects the part-of-speech tag of each word (usin
 
 ## License
 
-  MIT
+MIT © Titus Wormer
