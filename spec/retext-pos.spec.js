@@ -1,66 +1,100 @@
 'use strict';
 
-var pos, visit, Retext, assert, tree, tags, otherWords, otherTags;
+var pos,
+    visit,
+    content,
+    Retext,
+    assert,
+    retext,
+    tags,
+    otherWords,
+    otherTags;
+
+/**
+ * Module dependencies.
+ */
 
 pos = require('..');
-Retext = require('retext');
 visit = require('retext-visit');
+content = require('retext-content');
+Retext = require('retext');
 assert = require('assert');
 
-tree = new Retext()
+/**
+ * Retext.
+ */
+
+retext = new Retext()
     .use(visit)
-    .use(pos)
-    .parse('A simple, English, sentence');
+    .use(content)
+    .use(pos);
+
+/**
+ * Fixtures.
+ */
 
 tags = ['DT', 'JJ', 'NNP', 'NN'];
 otherWords = ['Another', 'harder', 'longer', 'paragraph'];
 otherTags = ['DT', 'JJR', 'RB', 'NN'];
 
+/**
+ * Tests.
+ */
+
 describe('pos()', function () {
-    it('should be of type `function`', function () {
+    it('should be a `function`', function () {
         assert(typeof pos === 'function');
     });
 
-    it('should process each `WordNode`', function () {
-        var iterator = -1;
-
-        tree.visitType(tree.WORD_NODE, function (wordNode) {
-            assert(wordNode.data.partOfSpeech === tags[++iterator]);
-        });
+    it('should export an `attach` method', function () {
+        assert(typeof pos.attach === 'function');
     });
 
-    it('should set each partOfSpeech attribute to `null` when a WordNode ' +
-        '(no longer?) has a value', function () {
-            tree.visitType(tree.WORD_NODE, function (wordNode) {
-                wordNode[0].fromString();
-                assert(wordNode.data.partOfSpeech === null);
-            });
-        }
-    );
+    retext.parse('A simple, English, sentence', function (err, tree) {
+        it('should not throw', function (done) {
+            done(err);
+        });
 
-    it('should automatically reprocess `WordNode`s when their values change',
-        function () {
-            var iterator = -1;
+        it('should tag `WordNode`', function () {
+            var index = -1;
 
             tree.visitType(tree.WORD_NODE, function (wordNode) {
-                wordNode[0].fromString(otherWords[++iterator]);
-                assert(wordNode.data.partOfSpeech === otherTags[iterator]);
+                assert(wordNode.data.partOfSpeech === tags[++index]);
             });
-        }
-    );
+        });
 
-    it('should set each partOfSpeech attribute to `null` when no longer ' +
-        'attached, and without value', function () {
+        it('should set `partOfSpeech` to `null` when `WordNode` ' +
+            '(no longer?) has a value', function () {
+                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                    wordNode.removeContent();
+
+                    assert(wordNode.data.partOfSpeech === null);
+                });
+            }
+        );
+
+        it('should re-tag `WordNode`s when their value changes', function () {
+            var index = -1;
+
             tree.visitType(tree.WORD_NODE, function (wordNode) {
-                wordNode.remove();
-                assert(wordNode.data.partOfSpeech !== null);
+                wordNode.replaceContent(otherWords[++index]);
 
-                while (wordNode.head) {
-                    wordNode.head.remove();
-                }
-
-                assert(wordNode.data.partOfSpeech === null);
+                assert(wordNode.data.partOfSpeech === otherTags[index]);
             });
-        }
-    );
+        });
+
+        it('should set `partOfSpeech` to `null` when not attached or ' +
+            'without value', function () {
+                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                    wordNode.remove();
+
+                    assert(wordNode.data.partOfSpeech !== null);
+
+                    wordNode.removeContent();
+
+                    assert(wordNode.data.partOfSpeech === null);
+                });
+            }
+        );
+    });
 });
