@@ -1,9 +1,5 @@
 # retext-pos [![Build Status](https://travis-ci.org/wooorm/retext-pos.svg?branch=master)](https://travis-ci.org/wooorm/retext-pos) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-pos.svg)](https://coveralls.io/r/wooorm/retext-pos?branch=master)
 
-[![browser support](https://ci.testling.com/wooorm/retext-pos.png) ](https://ci.testling.com/wooorm/retext-pos)
-
----
-
 **[Retext](https://github.com/wooorm/retext "Retext")** POS (part-of-speech) tagger using [dariusk/pos-js](https://github.com/dariusk/pos-js).
 
 ## Installation
