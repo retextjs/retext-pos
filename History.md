@@ -1,4 +1,21 @@
 
+n.n.n / 2014-09-25
+==================
+
+ * Refactor Readme.md
+ * Refactor API
+ * Add npm deployment to travis
+ * Remove `npm update` from travis
+ * Remove browser test
+ * Update .gitignore, .npmignore
+ * Update Installation in docs
+ * Fix property order in package.json
+ * Update copyright in Readme.md
+ * Remove testling
+ * Refactor spec
+ * Add retext-content as a dev-dependency
+ * Update eslint, retext
+
 0.1.2 / 2014-07-31
 ==================
 
