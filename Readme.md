@@ -14,32 +14,40 @@ $ npm install retext-pos
 ```js
 var Retext = require('retext'),
     visit = require('retext-visit'),
-    pos = require('retext-pos');
+    pos = require('retext-pos'),
+    retext;
 
-var root = new Retext()
+retext = new Retext()
     .use(visit)
-    .use(pos)
-    .parse('I went to the store, to buy 5.2 gallons of milk.');
+    .use(pos);
 
-root.visitType(root.WORD_NODE, function (node) {
-    console.log(node.toString(), node.data.partOfSpeech);
-});
-// 'I', 'NN'
-// 'went', 'VBD'
-// 'to', 'TO'
-// 'the', 'DT'
-// 'store', 'NN'
-// 'to', 'TO'
-// 'buy', 'VB'
-// '5.2', 'CD'
-// 'gallons', 'NNS'
-// 'of', 'IN'
-// 'milk', 'NN'
+retext.parse(
+    'I went to the store, to buy 5.2 gallons of milk.',
+    function (err, tree) {
+        tree.visitType(root.WORD_NODE, function (node) {
+            console.log(node.toString(), node.data.partOfSpeech);
+        });
+        /**
+         * 'I', 'NN'
+         * 'went', 'VBD'
+         * 'to', 'TO'
+         * 'the', 'DT'
+         * 'store', 'NN'
+         * 'to', 'TO'
+         * 'buy', 'VB'
+         * '5.2', 'CD'
+         * 'gallons', 'NNS'
+         * 'of', 'IN'
+         * 'milk', 'NN'
+         */
+    }
+);
 ```
 
 The example also uses [retext-visit](https://github.com/wooorm/retext-visit).
 
 ## API
+
 None, the plugin automatically detects the part-of-speech tag of each word (using [dariusk/pos-js](https://github.com/dariusk/pos-js)) when it’s created or changed, and stores the tag in `wordNode.data.partOfSpeech`.
 
 ## License
