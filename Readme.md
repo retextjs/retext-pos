@@ -4,14 +4,9 @@
 
 ## Installation
 
-NPM:
+npm:
 ```sh
 $ npm install retext-pos
-```
-
-Component.js:
-```sh
-$ component install wooorm/retext-pos
 ```
 
 ## Usage
