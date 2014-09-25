@@ -2,6 +2,7 @@
   "name": "retext-pos",
   "version": "0.1.2",
   "description": "Retext POS (part-of-speech) tagger",
+  "license": "MIT",
   "keywords": [
     "part",
     "of",
@@ -10,11 +11,14 @@
     "tagger",
     "retext"
   ],
-  "author": "Titus Wormer <tituswormer@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "pos": "^0.1.7"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-pos.git"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
     "eslint": "^0.8.2",
     "istanbul": "^0.3.0",
@@ -23,10 +27,6 @@
     "retext": "^0.2.0-rc.2",
     "retext-content": "^0.2.2",
     "retext-visit": "^0.1.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/retext-pos.git"
   },
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports spec/retext-pos.spec.js",
