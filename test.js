@@ -14,7 +14,7 @@ var pos,
  * Module dependencies.
  */
 
-pos = require('..');
+pos = require('./');
 visit = require('retext-visit');
 content = require('retext-content');
 Retext = require('retext');
