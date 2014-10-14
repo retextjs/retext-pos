@@ -1,4 +1,11 @@
 
+n.n.n / 2014-10-14
+==================
+
+ * Update retext, retext-visit
+ * Update .gitignore .npmignore
+ * Move spec to test.js
+
 0.1.3 / 2014-09-25
 ==================
 
