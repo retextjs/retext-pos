@@ -58,14 +58,14 @@ describe('pos()', function () {
         it('should tag `WordNode`', function () {
             var index = -1;
 
-            tree.visitType(tree.WORD_NODE, function (wordNode) {
+            tree.visit(tree.WORD_NODE, function (wordNode) {
                 assert(wordNode.data.partOfSpeech === tags[++index]);
             });
         });
 
         it('should set `partOfSpeech` to `null` when `WordNode` ' +
             '(no longer?) has a value', function () {
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     wordNode.removeContent();
 
                     assert(wordNode.data.partOfSpeech === null);
@@ -76,7 +76,7 @@ describe('pos()', function () {
         it('should re-tag `WordNode`s when their value changes', function () {
             var index = -1;
 
-            tree.visitType(tree.WORD_NODE, function (wordNode) {
+            tree.visit(tree.WORD_NODE, function (wordNode) {
                 wordNode.replaceContent(otherWords[++index]);
 
                 assert(wordNode.data.partOfSpeech === otherTags[index]);
@@ -85,7 +85,7 @@ describe('pos()', function () {
 
         it('should set `partOfSpeech` to `null` when not attached or ' +
             'without value', function () {
-                tree.visitType(tree.WORD_NODE, function (wordNode) {
+                tree.visit(tree.WORD_NODE, function (wordNode) {
                     wordNode.remove();
 
                     assert(wordNode.data.partOfSpeech !== null);
