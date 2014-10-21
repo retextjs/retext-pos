@@ -1,18 +1,14 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+
 var pos,
     visit,
     content,
     Retext,
-    assert,
-    retext,
-    tags,
-    otherWords,
-    otherTags;
-
-/**
- * Module dependencies.
- */
+    assert;
 
 pos = require('./');
 visit = require('retext-visit');
@@ -24,6 +20,8 @@ assert = require('assert');
  * Retext.
  */
 
+var retext;
+
 retext = new Retext()
     .use(visit)
     .use(content)
@@ -32,6 +30,10 @@ retext = new Retext()
 /**
  * Fixtures.
  */
+
+var tags,
+    otherWords,
+    otherTags;
 
 tags = ['DT', 'JJ', 'NNP', 'NN'];
 otherWords = ['Another', 'harder', 'longer', 'paragraph'];
