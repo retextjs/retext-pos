@@ -24,7 +24,7 @@
     "istanbul": "^0.3.0",
     "jscs": "^1.6.0",
     "mocha": "^1.21.0",
-    "retext": "^0.2.0",
+    "retext": "^0.3.0-rc.1",
     "retext-content": "^0.2.2",
     "retext-visit": "^0.2.0"
   },
