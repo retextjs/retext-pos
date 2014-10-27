@@ -1,6 +1,6 @@
 {
   "name": "retext-pos",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Retext POS (part-of-speech) tagger",
   "license": "MIT",
   "keywords": [
