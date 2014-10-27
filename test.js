@@ -48,10 +48,6 @@ describe('pos()', function () {
         assert(typeof pos === 'function');
     });
 
-    it('should export an `attach` method', function () {
-        assert(typeof pos.attach === 'function');
-    });
-
     retext.parse('A simple, English, sentence', function (err, tree) {
         it('should not throw', function (done) {
             done(err);

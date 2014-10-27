@@ -11,12 +11,6 @@ posjs = require('pos');
 tagger = new posjs.Tagger();
 
 /**
- * Define `pos`.
- */
-
-function pos() {}
-
-/**
  * A POS change inside a parent.
  *
  * @param {Parent} parent
@@ -94,12 +88,12 @@ function onremove(previousParent) {
 }
 
 /**
- * Define `attach`.
+ * Define `pos`.
  *
  * @param {Retext} retext - Instance of Retext.
  */
 
-function attach(retext) {
+function pos(retext) {
     var WordNode;
 
     WordNode = retext.parser.TextOM.WordNode;
@@ -111,12 +105,6 @@ function attach(retext) {
     WordNode.on('remove', onremove);
     WordNode.on('insert', onchange);
 }
-
-/**
- * Expose `attach`.
- */
-
-pos.attach = attach;
 
 /**
  * Expose `pos`.
