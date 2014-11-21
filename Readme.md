@@ -12,43 +12,65 @@ $ npm install retext-pos
 ## Usage
 
 ```js
-var Retext = require('retext'),
-    visit = require('retext-visit'),
-    pos = require('retext-pos'),
-    retext;
+var Retext = require('retext');
+var visit = require('retext-visit');
+var inspect = require('retext-inspect');
+var pos = require('retext-pos');
 
-retext = new Retext()
+var retext = new Retext()
     .use(visit)
+    .use(inspect)
     .use(pos);
 
 retext.parse(
     'I went to the store, to buy 5.2 gallons of milk.',
     function (err, tree) {
-        tree.visitType(root.WORD_NODE, function (node) {
-            console.log(node.toString(), node.data.partOfSpeech);
+        tree.visit(tree.WORD_NODE, function (node) {
+            console.log(node);
         });
         /**
-         * 'I', 'NN'
-         * 'went', 'VBD'
-         * 'to', 'TO'
-         * 'the', 'DT'
-         * 'store', 'NN'
-         * 'to', 'TO'
-         * 'buy', 'VB'
-         * '5.2', 'CD'
-         * 'gallons', 'NNS'
-         * 'of', 'IN'
-         * 'milk', 'NN'
+         * WordNode[1] [data={"partOfSpeech":"NN"}]
+         * └─ TextNode: 'I'
+         *
+         * WordNode[1] [data={"partOfSpeech":"VBD"}]
+         * └─ TextNode: 'went'
+         *
+         * WordNode[1] [data={"partOfSpeech":"TO"}]
+         * └─ TextNode: 'to'
+         *
+         * WordNode[1] [data={"partOfSpeech":"DT"}]
+         * └─ TextNode: 'the'
+         *
+         * WordNode[1] [data={"partOfSpeech":"NN"}]
+         * └─ TextNode: 'store'
+         *
+         * WordNode[1] [data={"partOfSpeech":"TO"}]
+         * └─ TextNode: 'to'
+         *
+         * WordNode[1] [data={"partOfSpeech":"VB"}]
+         * └─ TextNode: 'buy'
+         *
+         * WordNode[3] [data={"partOfSpeech":"CD"}]
+         * ├─ TextNode: '5'
+         * ├─ PunctuationNode: '.'
+         * └─ TextNode: '2'
+         *
+         * WordNode[1] [data={"partOfSpeech":"NNS"}]
+         * └─ TextNode: 'gallons'
+         *
+         * WordNode[1] [data={"partOfSpeech":"IN"}]
+         * └─ TextNode: 'of'
+         *
+         * WordNode[1] [data={"partOfSpeech":"NN"}]
+         * └─ TextNode: 'milk'
          */
     }
 );
 ```
 
-The example also uses [retext-visit](https://github.com/wooorm/retext-visit).
-
 ## API
 
-None, the plugin automatically detects the part-of-speech tag of each word (using [dariusk/pos-js](https://github.com/dariusk/pos-js)) when it’s created or changed, and stores the tag in `wordNode.data.partOfSpeech`.
+None, the plugin automatically detects the part-of-speech tag of each word (using [dariusk/pos-js](https://github.com/dariusk/pos-js)), and stores the tag in `wordNode.data.partOfSpeech`.
 
 ## License
 
