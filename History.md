@@ -1,4 +1,16 @@
 
+n.n.n / 2014-11-21
+==================
+
+ * Fix missing variable declaration in `test.js`
+ * Refactor `Readme.md`
+ * Add retext-inspect to dev-dependencies
+ * Add flat badges to `Readme.md`
+ * Fix incorrect executive rights on `test.js`
+ * Refactor npm script targets in `package.json`
+ * Add missing `.eslintrc` file
+ * Update retext
+
 0.1.7 / 2014-10-27
 ==================
 
