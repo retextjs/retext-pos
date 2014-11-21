@@ -1,5 +1,5 @@
 
-n.n.n / 2014-11-21
+0.1.8 / 2014-11-21
 ==================
 
  * Fix missing variable declaration in `test.js`
