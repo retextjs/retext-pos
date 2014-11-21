@@ -6,6 +6,7 @@
 
 var pos,
     visit,
+    inspect,
     content,
     Retext,
     assert;
