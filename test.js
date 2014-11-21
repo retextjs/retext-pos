@@ -12,6 +12,7 @@ var pos,
 
 pos = require('./');
 visit = require('retext-visit');
+inspect = require('retext-inspect');
 content = require('retext-content');
 Retext = require('retext');
 assert = require('assert');
@@ -23,6 +24,7 @@ assert = require('assert');
 var retext;
 
 retext = new Retext()
+    .use(inspect)
     .use(visit)
     .use(content)
     .use(pos);
