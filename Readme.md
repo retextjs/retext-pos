@@ -1,4 +1,4 @@
-# retext-pos [![Build Status](https://travis-ci.org/wooorm/retext-pos.svg?branch=master)](https://travis-ci.org/wooorm/retext-pos) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-pos.svg)](https://coveralls.io/r/wooorm/retext-pos?branch=master)
+# retext-pos [![Build Status](https://img.shields.io/travis/wooorm/retext-pos.svg?style=flat)](https://travis-ci.org/wooorm/retext-pos) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-pos.svg?style=flat)](https://coveralls.io/r/wooorm/retext-pos?branch=master)
 
 **[Retext](https://github.com/wooorm/retext "Retext")** POS (part-of-speech) tagger using [dariusk/pos-js](https://github.com/dariusk/pos-js).
 
