@@ -74,17 +74,17 @@ None, the plugin automatically detects the part-of-speech tag for each [`WordNod
 
 ## Performance
 
-On a MacBook Air, **retext** performs about 64% slower with **retext-pos**.
+On a MacBook Air, **retext** performs about 49% slower with **retext-pos**.
 
 
 ```
            retext w/o retext-pos
-  125 op/s » A paragraph (5 sentences, 100 words)
-   14 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
+  181 op/s » A paragraph (5 sentences, 100 words)
+   20 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
 
            retext w/ retext-pos
-   76 op/s » A paragraph (5 sentences, 100 words)
-    7 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
+   91 op/s » A paragraph (5 sentences, 100 words)
+    9 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
 ```
 
 ## License
