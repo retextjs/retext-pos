@@ -74,4 +74,4 @@ None, the plugin automatically detects the part-of-speech tag of each word (usin
 
 ## License
 
-MIT © Titus Wormer
+MIT © [Titus Wormer](http://wooorm.com)
