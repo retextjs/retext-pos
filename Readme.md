@@ -70,7 +70,7 @@ retext.parse(
 
 ## API
 
-None, the plugin automatically detects the part-of-speech tag of each word (using [dariusk/pos-js](https://github.com/dariusk/pos-js)), and stores the tag in `wordNode.data.partOfSpeech`.
+None, the plugin automatically detects the part-of-speech tag for each [`WordNode`](https://github.com/wooorm/textom/tree/master#textomwordnode-nlcstwordnode) (using [dariusk/pos-js](https://github.com/dariusk/pos-js)), and stores the tag in `node.data.partOfSpeech`.
 
 ## License
 
