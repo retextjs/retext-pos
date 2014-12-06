@@ -72,6 +72,21 @@ retext.parse(
 
 None, the plugin automatically detects the part-of-speech tag for each [`WordNode`](https://github.com/wooorm/textom/tree/master#textomwordnode-nlcstwordnode) (using [dariusk/pos-js](https://github.com/dariusk/pos-js)), and stores the tag in `node.data.partOfSpeech`.
 
+## Performance
+
+On a MacBook Air, **retext** performs about 64% slower with **retext-pos**.
+
+
+```
+           retext w/o retext-pos
+  125 op/s » A paragraph (5 sentences, 100 words)
+   14 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
+
+           retext w/ retext-pos
+   76 op/s » A paragraph (5 sentences, 100 words)
+    7 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
+```
+
 ## License
 
 MIT © [Titus Wormer](http://wooorm.com)

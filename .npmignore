@@ -2,5 +2,6 @@
 *.log
 coverage/
 node_modules/
+benchmark.js
 test.js
 History.md
