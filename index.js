@@ -98,12 +98,9 @@ function pos(retext) {
 
     WordNode = retext.parser.TextOM.WordNode;
 
-    WordNode.on('changetextinside', onchange);
-    WordNode.on('removeinside', onchange);
-    WordNode.on('insertinside', onchange);
-    WordNode.on('remove', onchange);
+    WordNode.on('changeinside', onchange);
+    WordNode.on('change', onchange);
     WordNode.on('remove', onremove);
-    WordNode.on('insert', onchange);
 }
 
 /**
