@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Module dependencies.
  */
 
@@ -18,7 +18,7 @@ content = require('retext-content');
 Retext = require('retext');
 assert = require('assert');
 
-/**
+/*
  * Retext.
  */
 
@@ -30,7 +30,7 @@ retext = new Retext()
     .use(content)
     .use(pos);
 
-/**
+/*
  * Fixtures.
  */
 
@@ -42,7 +42,7 @@ tags = ['DT', 'JJ', 'NNP', 'NN'];
 otherWords = ['Another', 'harder', 'longer', 'paragraph'];
 otherTags = ['DT', 'JJR', 'RB', 'NN'];
 
-/**
+/*
  * Tests.
  */
 

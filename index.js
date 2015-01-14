@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Module dependencies.
  */
 
@@ -15,7 +15,6 @@ tagger = new posjs.Tagger();
  *
  * @param {Parent} parent
  */
-
 function onchangeinparent(parent) {
     var values,
         wordNodes,
@@ -58,7 +57,6 @@ function onchangeinparent(parent) {
  *
  * @this {WordNode}
  */
-
 function onchange() {
     var self,
         value;
@@ -82,7 +80,6 @@ function onchange() {
  * @param {Parent} previousParent
  * @this {WordNode}
  */
-
 function onremove(previousParent) {
     onchangeinparent(previousParent);
 }
@@ -92,7 +89,6 @@ function onremove(previousParent) {
  *
  * @param {Retext} retext - Instance of Retext.
  */
-
 function pos(retext) {
     var WordNode;
 
@@ -103,7 +99,7 @@ function pos(retext) {
     WordNode.on('remove', onremove);
 }
 
-/**
+/*
  * Expose `pos`.
  */
 

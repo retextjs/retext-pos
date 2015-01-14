@@ -3,14 +3,14 @@
 var Retext,
     pos;
 
-/**
+/*
  * Dependencies.
  */
 
 Retext = require('retext');
 pos = require('./');
 
-/**
+/*
  * Dependencies.
  */
 
@@ -20,7 +20,7 @@ var retext,
 retext = new Retext();
 retextWithPOS = new Retext().use(pos);
 
-/**
+/*
  * Test data: A (big?) article (w/ 100 paragraphs, 500
  * sentences, 10,000 words);
  *
