@@ -10,6 +10,12 @@
 $ npm install retext-pos
 ```
 
+[Duo](http://duojs.org/#getting-started):
+
+```javascript
+var pos = require('wooorm/retext-pos');
+```
+
 ## Usage
 
 ```javascript
