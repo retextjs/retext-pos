@@ -5,13 +5,14 @@
 ## Installation
 
 npm:
-```sh
+
+```bash
 $ npm install retext-pos
 ```
 
 ## Usage
 
-```js
+```javascript
 var Retext = require('retext');
 var visit = require('retext-visit');
 var inspect = require('retext-inspect');
@@ -77,7 +78,7 @@ None, the plugin automatically detects the part-of-speech tag for each [`WordNod
 On a MacBook Air, **retext** performs about 49% slower with **retext-pos**.
 
 
-```
+```text
            retext w/o retext-pos
   181 op/s » A paragraph (5 sentences, 100 words)
    20 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
