@@ -7,7 +7,16 @@
 var posjs,
     tagger;
 
-posjs = require('pos');
+/*
+ * Duo or npm:
+ */
+
+try {
+    posjs = require('dariusk/pos-js');
+} catch (exception) {
+    posjs = require('pos');
+}
+
 tagger = new posjs.Tagger();
 
 /**
