@@ -4,7 +4,7 @@
 
 ## Installation
 
-npm:
+[npm](https://docs.npmjs.com/cli/install):
 
 ```bash
 $ npm install retext-pos
@@ -29,7 +29,7 @@ retext.parse(
         tree.visit(tree.WORD_NODE, function (node) {
             console.log(node);
         });
-        /**
+        /*
          * WordNode[1] [data={"partOfSpeech":"NN"}]
          * └─ TextNode: 'I'
          *
