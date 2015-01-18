@@ -16,6 +16,12 @@ $ npm install retext-pos
 $ component install wooorm/retext-pos
 ```
 
+[Bower](http://bower.io/#install-packages):
+
+```bash
+$ bower install retext-pos
+```
+
 [Duo](http://duojs.org/#getting-started):
 
 ```javascript
