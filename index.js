@@ -7,13 +7,17 @@
 var posjs,
     tagger;
 
-/*
- * Duo or npm:
- */
-
 try {
-    posjs = require('dariusk/pos-js');
+    /*
+     * Duo and component:
+     */
+
+    posjs = require('pos-js');
 } catch (exception) {
+   /*
+    * npm and component:
+    */
+
     posjs = require('pos');
 }
 
