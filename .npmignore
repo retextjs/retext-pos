@@ -1,7 +1,10 @@
 .*
 *.log
+build/
+components/
 coverage/
 node_modules/
+component.json
 benchmark.js
 test.js
 History.md
