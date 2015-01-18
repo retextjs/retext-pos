@@ -1,0 +1,21 @@
+{
+  "name": "retext-pos",
+  "version": "0.2.0",
+  "description": "Retext POS (part-of-speech) tagger",
+  "license": "MIT",
+  "keywords": [
+    "part",
+    "of",
+    "speech",
+    "pos",
+    "tagger",
+    "retext"
+  ],
+  "dependencies": {
+    "dariusk/pos-js": "*"
+  },
+  "repository": "wooorm/retext-pos",
+  "scripts": [
+    "index.js"
+  ]
+}
