@@ -10,6 +10,12 @@
 $ npm install retext-pos
 ```
 
+[Component.js](https://github.com/componentjs/component):
+
+```bash
+$ component install wooorm/retext-pos
+```
+
 [Duo](http://duojs.org/#getting-started):
 
 ```javascript
