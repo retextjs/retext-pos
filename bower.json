@@ -1,0 +1,37 @@
+{
+  "name": "retext-pos",
+  "main": "index.js",
+  "description": "Retext POS (part-of-speech) tagger",
+  "license": "MIT",
+  "keywords": [
+    "part",
+    "of",
+    "speech",
+    "pos",
+    "tagger",
+    "retext"
+  ],
+  "dependencies": {
+    "pos": "git@github.com:dariusk/pos-js.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-pos.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "build/",
+    "components/",
+    "coverage/",
+    "node_modules/",
+    "component.json",
+    "package.json",
+    "benchmark.js",
+    "test.js"
+  ]
+}
