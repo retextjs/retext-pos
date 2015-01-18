@@ -1,4 +1,17 @@
 
+n.n.n / 2015-01-18
+==================
+
+  * Update `.gitignore` for bower
+  * Update `.npmignore` for bower
+  * Add Bower as an installation method in `Readme.md`
+  * Add `bower.json`
+  * Refactor `index.js` for updated installation methods
+  * Update `.npmignore` for component
+  * Update `.gitignore` for component
+  * Add Component as an instalation method in `Readme.md`
+  * Add `component.json`
+
 0.2.0 / 2015-01-14
 ==================
 
