@@ -4,6 +4,11 @@
 
 <!--lint disable maximum-line-length-->
 
+1.0.0 / 2015-08-01
+==================
+
+*   Refactor api for retext@1.0.0 (89ce36f)
+
 0.2.1 / 2015-01-18
 ==================
 
