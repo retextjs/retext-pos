@@ -1,110 +1,88 @@
-# retext-pos [![Build Status](https://img.shields.io/travis/wooorm/retext-pos.svg?style=flat)](https://travis-ci.org/wooorm/retext-pos) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-pos.svg?style=flat)](https://coveralls.io/r/wooorm/retext-pos?branch=master)
+# retext-pos [![Build Status](https://img.shields.io/travis/wooorm/retext-pos.svg)](https://travis-ci.org/wooorm/retext-pos) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/retext-pos.svg)](https://codecov.io/github/wooorm/retext-pos)
 
-**[Retext](https://github.com/wooorm/retext "Retext")** POS (part-of-speech) tagger using [dariusk/pos-js](https://github.com/dariusk/pos-js).
+[**Retext**](https://github.com/wooorm/retext) implementation of the
+[Metaphone](http://en.wikipedia.org/wiki/Metaphone) algorithm.
+
+[**Retext**](https://github.com/wooorm/retext) part-of-speech (POS) tagger.
 
 ## Installation
 
 [npm](https://docs.npmjs.com/cli/install):
 
 ```bash
-$ npm install retext-pos
+npm install retext-pos
 ```
 
-[Component.js](https://github.com/componentjs/component):
-
-```bash
-$ component install wooorm/retext-pos
-```
-
-[Bower](http://bower.io/#install-packages):
-
-```bash
-$ bower install retext-pos
-```
-
-[Duo](http://duojs.org/#getting-started):
-
-```javascript
-var pos = require('wooorm/retext-pos');
-```
+**retext-pos** is also available for [bower](http://bower.io/#install-packages),
+[component](https://github.com/componentjs/component), and
+[duo](http://duojs.org/#getting-started), and as an AMD, CommonJS, and globals
+module, [uncompressed](retext-pos.js) and
+[compressed](retext-pos.min.js).
 
 ## Usage
 
 ```javascript
-var Retext = require('retext');
-var visit = require('retext-visit');
-var inspect = require('retext-inspect');
+var retext = require('retext');
+var inspect = require('unist-util-inspect');
 var pos = require('retext-pos');
 
-var retext = new Retext()
-    .use(visit)
-    .use(inspect)
-    .use(pos);
+retext().use(pos).use(function () {
+    return function (cst) {
+        console.log(inspect(cst));
+    };
+}).process('I went to the store, to buy 5.2 gallons of milk.');
+```
 
-retext.parse(
-    'I went to the store, to buy 5.2 gallons of milk.',
-    function (err, tree) {
-        tree.visit(tree.WORD_NODE, function (node) {
-            console.log(node);
-        });
-        /*
-         * WordNode[1] [data={"partOfSpeech":"NN"}]
-         * └─ TextNode: 'I'
-         *
-         * WordNode[1] [data={"partOfSpeech":"VBD"}]
-         * └─ TextNode: 'went'
-         *
-         * WordNode[1] [data={"partOfSpeech":"TO"}]
-         * └─ TextNode: 'to'
-         *
-         * WordNode[1] [data={"partOfSpeech":"DT"}]
-         * └─ TextNode: 'the'
-         *
-         * WordNode[1] [data={"partOfSpeech":"NN"}]
-         * └─ TextNode: 'store'
-         *
-         * WordNode[1] [data={"partOfSpeech":"TO"}]
-         * └─ TextNode: 'to'
-         *
-         * WordNode[1] [data={"partOfSpeech":"VB"}]
-         * └─ TextNode: 'buy'
-         *
-         * WordNode[3] [data={"partOfSpeech":"CD"}]
-         * ├─ TextNode: '5'
-         * ├─ PunctuationNode: '.'
-         * └─ TextNode: '2'
-         *
-         * WordNode[1] [data={"partOfSpeech":"NNS"}]
-         * └─ TextNode: 'gallons'
-         *
-         * WordNode[1] [data={"partOfSpeech":"IN"}]
-         * └─ TextNode: 'of'
-         *
-         * WordNode[1] [data={"partOfSpeech":"NN"}]
-         * └─ TextNode: 'milk'
-         */
-    }
-);
+Yields:
+
+```text
+RootNode[1]
+└─ ParagraphNode[1]
+   └─ SentenceNode[23]
+      ├─ WordNode[1] [data={"partOfSpeech":"NN"}]
+      │  └─ TextNode: 'I'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"VBD"}]
+      │  └─ TextNode: 'went'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"TO"}]
+      │  └─ TextNode: 'to'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"DT"}]
+      │  └─ TextNode: 'the'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"NN"}]
+      │  └─ TextNode: 'store'
+      ├─ PunctuationNode: ','
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"TO"}]
+      │  └─ TextNode: 'to'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"VB"}]
+      │  └─ TextNode: 'buy'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[3] [data={"partOfSpeech":"CD"}]
+      │  ├─ TextNode: '5'
+      │  ├─ PunctuationNode: '.'
+      │  └─ TextNode: '2'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"NNS"}]
+      │  └─ TextNode: 'gallons'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"IN"}]
+      │  └─ TextNode: 'of'
+      ├─ WhiteSpaceNode: ' '
+      ├─ WordNode[1] [data={"partOfSpeech":"NN"}]
+      │  └─ TextNode: 'milk'
+      └─ PunctuationNode: '.'
 ```
 
 ## API
 
-None, the plugin automatically detects the part-of-speech tag for each [`WordNode`](https://github.com/wooorm/textom/tree/master#textomwordnode-nlcstwordnode) (using [dariusk/pos-js](https://github.com/dariusk/pos-js)), and stores the tag in `node.data.partOfSpeech`.
-
-## Performance
-
-On a MacBook Air, **retext** performs about 49% slower with **retext-pos**.
-
-
-```text
-           retext w/o retext-pos
-  181 op/s » A paragraph (5 sentences, 100 words)
-   20 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
-
-           retext w/ retext-pos
-   91 op/s » A paragraph (5 sentences, 100 words)
-    9 op/s » A section (10 paragraphs, 50 sentences, 1,000 words)
-```
+None, the plugin automatically detects the part-of-speech tag for each
+[`WordNode`](https://github.com/wooorm/nlcst#wordnode) (using
+[**dariusk/pos-js**](https://github.com/dariusk/pos-js)), and stores the tags
+in `node.data.partOfSpeech`.
 
 ## License
 

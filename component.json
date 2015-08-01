@@ -1,7 +1,7 @@
 {
   "name": "retext-pos",
   "version": "0.2.1",
-  "description": "Retext POS (part-of-speech) tagger",
+  "description": "Retext part-of-speech (POS) tagger",
   "license": "MIT",
   "keywords": [
     "part",
@@ -12,6 +12,8 @@
     "retext"
   ],
   "dependencies": {
+    "wooorm/unist-util-visit": "^1.0.0",
+    "wooorm/nlcst-to-string": "~0.1.5",
     "dariusk/pos-js": "*"
   },
   "repository": "wooorm/retext-pos",

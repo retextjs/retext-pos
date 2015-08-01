@@ -1,7 +1,7 @@
 {
   "name": "retext-pos",
-  "main": "index.js",
-  "description": "Retext POS (part-of-speech) tagger",
+  "main": "retext-pos.js",
+  "description": "Retext part-of-speech (POS) tagger",
   "license": "MIT",
   "keywords": [
     "part",
@@ -11,9 +11,6 @@
     "tagger",
     "retext"
   ],
-  "dependencies": {
-    "pos": "git@github.com:dariusk/pos-js.git"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wooorm/retext-pos.git"

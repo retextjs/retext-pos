@@ -1,101 +1,50 @@
 'use strict';
 
-/*
- * Module dependencies.
- */
-
-var pos,
-    visit,
-    inspect,
-    content,
-    Retext,
-    assert;
-
-pos = require('./');
-visit = require('retext-visit');
-inspect = require('retext-inspect');
-content = require('retext-content');
-Retext = require('retext');
-assert = require('assert');
+/* eslint-env mocha */
 
 /*
- * Retext.
+ * Dependencies.
  */
 
-var retext;
-
-retext = new Retext()
-    .use(inspect)
-    .use(visit)
-    .use(content)
-    .use(pos);
+var assert = require('assert');
+var retext = require('retext');
+var visit = require('unist-util-visit');
+var pos = require('./');
 
 /*
  * Fixtures.
  */
 
-var tags,
-    otherWords,
-    otherTags;
+var sentence = 'I went to the store, to buy 5.2 gallons of milk.';
 
-tags = ['DT', 'JJ', 'NNP', 'NN'];
-otherWords = ['Another', 'harder', 'longer', 'paragraph'];
-otherTags = ['DT', 'JJR', 'RB', 'NN'];
+var tags = [
+    'NN',
+    'VBD',
+    'TO',
+    'DT',
+    'NN',
+    'TO',
+    'VB',
+    'CD',
+    'NNS',
+    'IN',
+    'NN'
+];
 
 /*
  * Tests.
  */
 
 describe('pos()', function () {
-    it('should be a `function`', function () {
-        assert(typeof pos === 'function');
-    });
+    retext().use(pos).process(sentence, function (err, file) {
+        it('should work', function (done) {
+            var index = -1;
 
-    retext.parse('A simple, English, sentence', function (err, tree) {
-        it('should not throw', function (done) {
+            visit(file.namespace('retext').cst, 'WordNode', function (node) {
+                assert.equal(node.data.partOfSpeech, tags[++index]);
+            });
+
             done(err);
         });
-
-        it('should tag `WordNode`', function () {
-            var index = -1;
-
-            tree.visit(tree.WORD_NODE, function (wordNode) {
-                assert(wordNode.data.partOfSpeech === tags[++index]);
-            });
-        });
-
-        it('should set `partOfSpeech` to `null` when `WordNode` ' +
-            '(no longer?) has a value', function () {
-                tree.visit(tree.WORD_NODE, function (wordNode) {
-                    wordNode.removeContent();
-
-                    assert(wordNode.data.partOfSpeech === null);
-                });
-            }
-        );
-
-        it('should re-tag `WordNode`s when their value changes', function () {
-            var index = -1;
-
-            tree.visit(tree.WORD_NODE, function (wordNode) {
-                wordNode.replaceContent(otherWords[++index]);
-
-                assert(wordNode.data.partOfSpeech === otherTags[index]);
-            });
-        });
-
-        it('should set `partOfSpeech` to `null` when not attached or ' +
-            'without value', function () {
-                tree.visit(tree.WORD_NODE, function (wordNode) {
-                    wordNode.remove();
-
-                    assert(wordNode.data.partOfSpeech !== null);
-
-                    wordNode.removeContent();
-
-                    assert(wordNode.data.partOfSpeech === null);
-                });
-            }
-        );
     });
 });
