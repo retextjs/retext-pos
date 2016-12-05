@@ -8,13 +8,13 @@ deploy:
   - provider: npm
     email: tituswormer@gmail.com
     api_key:
-      secure: gozKbjN5y764ibdpiEa8YlzmQseSjR4kQdGvYoB2MHWLrJ1dKe7yGEn/Dgd5DpzqFapPEy5NjSNDOSZwkq8QuRnzlw3F5iqPClRR9ly4lmgpWOfDGJFKWnwvnAo+jaedqOIrm8lXASC9TB/ltXvpFzQ3EJQ2WngeOmNKeTUclyE=
+      secure: LbM5/iQGRy65X728/MfeR7nQzJzkODx+Uk70+hIXEpFqTn+cRnHrp57TePWJsJwGskc8gp6e0UYFI52ure2WR8ZMBYs05S18CA/ye2xVrQhDzRaSFBTpe6OMhNwxmZrqDmdiiAiT2DwgAG/ZTf9WNkllWuKabN/6NW1/HfiEIcA=
     on:
       tags: true
       node: '4.0'
   - provider: releases
     api_key:
-      secure: STI8hV1ZawQtuKM/ZBwsuz8ciP9QsK7b4797NnNM05Dq2cPA2rMzwGk1VIZIGGRlt22tPHXhMod3kBscqgkknHT409xs2DGWDJsY5QJFDXYau6vY1BgvGftokZwE1KG90uK2zAjitaNElD6Hl/YLc1JVZlBNKkseXxE2jjOUkOU=
+      secure: Kq+MYZMK9Lz9UCKvnYijdmxb+7onHtdAAiVDcGfL+wZHA1nMa6g0n3QI11RyOE8hWX5asDivghs+5kkTCEdp54MpFIDd3XmP7vecRlWlFdSFl9wC+xC4nBik5FSqqQ/KMvjn4ZoLxopeNzjm+lhsLBdGWdWpa3HU0EKf3JZF2UU=
     file:
       - "retext-pos.js"
       - "retext-pos.min.js"
