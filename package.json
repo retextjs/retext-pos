@@ -1,7 +1,7 @@
 {
   "name": "retext-pos",
   "version": "1.0.0",
-  "description": "Retext part-of-speech (POS) tagger",
+  "description": "Part-of-speech (POS) tagger",
   "license": "MIT",
   "keywords": [
     "part",
@@ -12,8 +12,8 @@
     "retext"
   ],
   "dependencies": {
-    "nlcst-to-string": "^0.1.5",
-    "pos": "^0.2.3",
+    "nlcst-to-string": "^2.0.0",
+    "pos": "^0.4.2",
     "unist-util-visit": "^1.0.0"
   },
   "files": [
@@ -25,34 +25,39 @@
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
-    "browserify": "^11.0.1",
-    "chalk": "^1.0.0",
-    "eslint": "^1.0.0",
+    "browserify": "^13.1.1",
     "esmangle": "^1.0.1",
-    "istanbul": "^0.3.0",
-    "jscs": "^2.0.0",
-    "jscs-jsdoc": "^1.0.0",
-    "mdast": "^0.28.0",
-    "mdast-comment-config": "^0.1.2",
-    "mdast-github": "^0.3.2",
-    "mdast-lint": "^0.4.2",
-    "mdast-slug": "^0.1.1",
-    "mdast-validate-links": "^0.3.1",
-    "mocha": "^2.0.0",
-    "retext": "^1.0.0-rc.2"
+    "nyc": "^10.0.0",
+    "remark-cli": "^2.1.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "retext": "^4.0.0",
+    "tape": "^4.6.3",
+    "xo": "^0.17.1"
   },
   "scripts": {
-    "test-api": "mocha --check-leaks test.js",
-    "test-coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "npm run test-coverage",
-    "test": "npm run test-api",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
-    "make": "npm run lint && npm run test-coverage",
-    "build-bundle": "browserify index.js --ignore-missing --no-builtins --standalone retextPOS > retext-pos.js",
-    "postbuild-bundle": "esmangle retext-pos.js > retext-pos.min.js",
-    "build-md": "mdast . --quiet",
-    "build": "npm run build-bundle && npm run build-md"
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js --ignore-missing --bare -s retextPos > retext-pos.js",
+    "build-mangle": "esmangle retext-pos.js > retext-pos.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "retext-pos.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "presets": "wooorm"
   }
 }

@@ -1,50 +1,34 @@
 'use strict';
 
-/* eslint-env mocha */
-
-/*
- * Dependencies.
- */
-
-var assert = require('assert');
+var test = require('tape');
 var retext = require('retext');
 var visit = require('unist-util-visit');
 var pos = require('./');
 
-/*
- * Fixtures.
- */
-
 var sentence = 'I went to the store, to buy 5.2 gallons of milk.';
 
 var tags = [
-    'NN',
-    'VBD',
-    'TO',
-    'DT',
-    'NN',
-    'TO',
-    'VB',
-    'CD',
-    'NNS',
-    'IN',
-    'NN'
+  'PRP',
+  'VBD',
+  'TO',
+  'DT',
+  'NN',
+  'TO',
+  'VB',
+  'CD',
+  'NNS',
+  'IN',
+  'NN'
 ];
 
-/*
- * Tests.
- */
+test('pos()', function (t) {
+  var proc = retext().use(pos);
+  var tree = proc.run(proc.parse(sentence));
+  var index = -1;
 
-describe('pos()', function () {
-    retext().use(pos).process(sentence, function (err, file) {
-        it('should work', function (done) {
-            var index = -1;
+  visit(tree, 'WordNode', function (node) {
+    t.equal(node.data.partOfSpeech, tags[++index]);
+  });
 
-            visit(file.namespace('retext').cst, 'WordNode', function (node) {
-                assert.equal(node.data.partOfSpeech, tags[++index]);
-            });
-
-            done(err);
-        });
-    });
+  t.end();
 });
