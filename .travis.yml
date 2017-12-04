@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '8.0'
+- '9.0'
 sudo: false
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
@@ -11,7 +11,7 @@ deploy:
       secure: LbM5/iQGRy65X728/MfeR7nQzJzkODx+Uk70+hIXEpFqTn+cRnHrp57TePWJsJwGskc8gp6e0UYFI52ure2WR8ZMBYs05S18CA/ye2xVrQhDzRaSFBTpe6OMhNwxmZrqDmdiiAiT2DwgAG/ZTf9WNkllWuKabN/6NW1/HfiEIcA=
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
   - provider: releases
     api_key:
       secure: Kq+MYZMK9Lz9UCKvnYijdmxb+7onHtdAAiVDcGfL+wZHA1nMa6g0n3QI11RyOE8hWX5asDivghs+5kkTCEdp54MpFIDd3XmP7vecRlWlFdSFl9wC+xC4nBik5FSqqQ/KMvjn4ZoLxopeNzjm+lhsLBdGWdWpa3HU0EKf3JZF2UU=
@@ -20,4 +20,4 @@ deploy:
       - "retext-pos.min.js"
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
