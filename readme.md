@@ -80,6 +80,13 @@ None, the plugin automatically detects the part-of-speech tag for each
 [`WordNode`][word] (using [`dariusk/pos-js`][posjs]), and stores the tags
 in `node.data.partOfSpeech`.
 
+## Contribute
+
+See [`contribute.md` in `retextjs/retext`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -105,3 +112,7 @@ in `node.data.partOfSpeech`.
 [word]: https://github.com/syntax-tree/nlcst#word
 
 [posjs]: https://github.com/dariusk/pos-js
+
+[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
+
+[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
