@@ -11,7 +11,7 @@
     "tagger",
     "retext"
   ],
-  "repository": "wooorm/retext-pos",
+  "repository": "retextjs/retext-pos",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"

@@ -86,13 +86,13 @@ in `node.data.partOfSpeech`.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/retext-pos.svg
+[travis-badge]: https://img.shields.io/travis/retextjs/retext-pos.svg
 
-[travis]: https://travis-ci.org/wooorm/retext-pos
+[travis]: https://travis-ci.org/retextjs/retext-pos
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/retext-pos.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-pos.svg
 
-[codecov]: https://codecov.io/github/wooorm/retext-pos
+[codecov]: https://codecov.io/github/retextjs/retext-pos
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -100,8 +100,8 @@ in `node.data.partOfSpeech`.
 
 [author]: http://wooorm.com
 
-[retext]: https://github.com/wooorm/retext
+[retext]: https://github.com/retextjs/retext
 
-[word]: https://github.com/wooorm/nlcst#word
+[word]: https://github.com/syntax-tree/nlcst#word
 
 [posjs]: https://github.com/dariusk/pos-js
