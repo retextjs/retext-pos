@@ -1,4 +1,4 @@
-# retext-pos [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# retext-pos [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
 
 Part-of-speech (POS) tagger for [**retext**][retext].
 
@@ -93,13 +93,21 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/retextjs/retext-pos.svg
+[build-badge]: https://img.shields.io/travis/retextjs/retext-pos.svg
 
-[travis]: https://travis-ci.org/retextjs/retext-pos
+[build]: https://travis-ci.org/retextjs/retext-pos
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-pos.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-pos.svg
 
-[codecov]: https://codecov.io/github/retextjs/retext-pos
+[coverage]: https://codecov.io/github/retextjs/retext-pos
+
+[downloads-badge]: https://img.shields.io/npm/dm/retext-pos.svg
+
+[downloads]: https://www.npmjs.com/package/retext-pos
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
 
