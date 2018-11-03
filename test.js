@@ -3,7 +3,7 @@
 var test = require('tape');
 var retext = require('retext');
 var visit = require('unist-util-visit');
-var pos = require('./');
+var pos = require('.');
 
 var sentence = 'I went to the store, to buy 5.2 gallons of milk.';
 
