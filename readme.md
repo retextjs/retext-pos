@@ -13,19 +13,19 @@ npm install retext-pos
 ## Usage
 
 ```javascript
-var retext = require('retext');
-var inspect = require('unist-util-inspect');
-var pos = require('retext-pos');
+var retext = require('retext')
+var inspect = require('unist-util-inspect')
+var pos = require('retext-pos')
 
 retext()
   .use(pos)
-  .use(function () {
-    return transformer;
+  .use(function() {
+    return transformer
     function transformer(tree) {
-      console.log(inspect(tree));
+      console.log(inspect(tree))
     }
   })
-  .process('I went to the store, to buy 5.2 gallons of milk.');
+  .process('I went to the store, to buy 5.2 gallons of milk.')
 ```
 
 Yields:
