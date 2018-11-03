@@ -5,3 +5,4 @@ coverage/
 node_modules/
 retext-pos.js
 retext-pos.min.js
+yarn.lock
