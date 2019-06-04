@@ -2,20 +2,78 @@
 
 var test = require('tape')
 var retext = require('retext')
-var visit = require('unist-util-visit')
+var u = require('unist-builder')
+var removePosition = require('unist-util-remove-position')
 var pos = require('.')
-
-var sentence = 'I went to the store, to buy 5.2 gallons of milk.'
-
-var tags = ['PRP', 'VBD', 'TO', 'DT', 'NN', 'TO', 'VB', 'CD', 'NNS', 'IN', 'NN']
 
 test('pos()', function(t) {
   var proc = retext().use(pos)
-  var tree = proc.run(proc.parse(sentence))
-  var index = -1
 
-  visit(tree, 'WordNode', function(node) {
-    t.equal(node.data.partOfSpeech, tags[++index])
+  t.test('A sentence', function(st) {
+    var tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
+
+    proc.runSync(tree)
+    removePosition(tree, true)
+
+    st.deepEqual(
+      tree,
+      u('RootNode', [
+        u('ParagraphNode', [
+          u('SentenceNode', [
+            u('WordNode', {data: {partOfSpeech: 'PRP'}}, [u('TextNode', 'I')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'VBD'}}, [
+              u('TextNode', 'went')
+            ]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'TO'}}, [u('TextNode', 'to')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'DT'}}, [u('TextNode', 'the')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'NN'}}, [
+              u('TextNode', 'store')
+            ]),
+            u('PunctuationNode', ','),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'TO'}}, [u('TextNode', 'to')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'VB'}}, [u('TextNode', 'buy')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'CD'}}, [
+              u('TextNode', '5'),
+              u('PunctuationNode', '.'),
+              u('TextNode', '2')
+            ]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'NNS'}}, [
+              u('TextNode', 'gallons')
+            ]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'IN'}}, [u('TextNode', 'of')]),
+            u('WhiteSpaceNode', ' '),
+            u('WordNode', {data: {partOfSpeech: 'NN'}}, [
+              u('TextNode', 'milk')
+            ]),
+            u('PunctuationNode', '.')
+          ])
+        ])
+      ])
+    )
+
+    st.end()
+  })
+
+  t.test('An empty sentence', function(st) {
+    var tree = u('RootNode', [
+      u('ParagraphNode', [
+        u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
+      ])
+    ])
+    var exact = JSON.stringify(JSON.parse(tree))
+
+    st.deepEqual(proc.runSync(tree), exact)
+
+    st.end()
   })
 
   t.end()
