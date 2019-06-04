@@ -1,36 +1,52 @@
-# retext-pos [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
+# retext-pos
 
-Part-of-speech (POS) tagger for [**retext**][retext].
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-## Installation
+[**retext**][retext] plugin to add part-of-speech (POS) tags.
+
+Useful for other plugins as it adds information to [**nlcst**][nlcst] nodes.
+
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install retext-pos
 ```
 
-## Usage
+## Use
 
-```javascript
+```js
 var retext = require('retext')
 var inspect = require('unist-util-inspect')
 var pos = require('retext-pos')
 
 retext()
   .use(pos)
-  .use(function() {
-    return transformer
-    function transformer(tree) {
-      console.log(inspect(tree))
+  .use(plugin)
+  .process('I went to the store, to buy 5.2 gallons of milk.', function (err) {
+    if (err) {
+      throw err;
     }
   })
-  .process('I went to the store, to buy 5.2 gallons of milk.')
+
+function plugin() {
+  return transformer
+  function transformer(tree) {
+    console.log(inspect(tree))
+  }
+}
 ```
 
 Yields:
 
-```text
+```txt
 RootNode[1] (1:1-1:49, 0-48)
 └─ ParagraphNode[1] (1:1-1:49, 0-48)
    └─ SentenceNode[23] (1:1-1:49, 0-48)
@@ -76,16 +92,18 @@ RootNode[1] (1:1-1:49, 0-48)
 
 ### `retext().use(pos)`
 
-None, the plugin automatically detects the part-of-speech tag for each
-[`WordNode`][word] (using [`dariusk/pos-js`][posjs]), and stores the tags
-in `node.data.partOfSpeech`.
+Add part-of-speech (POS) tags to [**word**][word]s using
+[`dariusk/pos-js`][posjs] at `node.data.partOfSpeech`.
 
 ## Contribute
 
-See [`contribute.md` in `retextjs/retext`][contribute] for ways to get started.
+See [`contributing.md`][contributing] in [`retextjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -105,11 +123,29 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-pos
 
+[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-pos.svg
+
+[size]: https://bundlephobia.com/result?p=retext-pos
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/retextjs/.github
+
+[contributing]: https://github.com/retextjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/retextjs/.github/blob/master/support.md
+
+[coc]: https://github.com/retextjs/.github/blob/master/code-of-conduct.md
 
 [license]: license
 
@@ -117,10 +153,8 @@ repository, organisation, or community you agree to abide by its terms.
 
 [retext]: https://github.com/retextjs/retext
 
+[nlcst]: https://github.com/syntax-tree/nlcst
+
 [word]: https://github.com/syntax-tree/nlcst#word
 
 [posjs]: https://github.com/dariusk/pos-js
-
-[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
-
-[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
