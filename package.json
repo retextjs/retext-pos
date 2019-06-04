@@ -1,15 +1,16 @@
 {
   "name": "retext-pos",
   "version": "2.0.1",
-  "description": "Part-of-speech (POS) tagger",
+  "description": "retext plugin add part-of-speech (POS) tags",
   "license": "MIT",
   "keywords": [
+    "unified",
+    "retext",
     "part",
     "of",
     "speech",
     "pos",
-    "tagger",
-    "retext"
+    "tagger"
   ],
   "repository": "retextjs/retext-pos",
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
