@@ -1,6 +1,6 @@
 {
   "name": "retext-pos",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "retext plugin to add part-of-speech (POS) tags",
   "license": "MIT",
   "keywords": [
