@@ -13,20 +13,10 @@ function pos() {
 }
 
 function transformer(tree) {
-  var queue = []
+  visit(tree, 'SentenceNode', visitor)
 
-  visit(tree, 'WordNode', visitor)
-
-  /* Gather a parent if not already gathered. */
-  function visitor(node, index, parent) {
-    if (parent && queue.indexOf(parent) === -1) {
-      queue.push(parent)
-      one(parent)
-    }
-  }
-
-  /* Patch all words in `parent`. */
-  function one(node) {
+  // Patch all words in `parent`.
+  function visitor(node) {
     var children = node.children
     var length = children.length
     var index = -1
@@ -35,6 +25,7 @@ function transformer(tree) {
     var child
     var tags
 
+    // Find words.
     while (++index < length) {
       child = children[index]
 
@@ -44,13 +35,19 @@ function transformer(tree) {
       }
     }
 
-    tags = tagger.tag(values)
-    index = -1
-    length = tags.length
+    // Apply tags if there are words.
+    if (values.length !== 0) {
+      tags = tagger.tag(values)
+      length = tags.length
+      index = -1
 
-    while (++index < length) {
-      patch(words[index], tags[index][1])
+      while (++index < length) {
+        patch(words[index], tags[index][1])
+      }
     }
+
+    // Don’t enter sentences.
+    return visit.SKIP
   }
 
   // Patch a `partOfSpeech` property on `node`s.
