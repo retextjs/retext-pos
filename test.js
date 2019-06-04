@@ -69,7 +69,7 @@ test('pos()', function(t) {
         u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
       ])
     ])
-    var exact = JSON.stringify(JSON.parse(tree))
+    var exact = JSON.parse(JSON.stringify(tree))
 
     st.deepEqual(proc.runSync(tree), exact)
 
