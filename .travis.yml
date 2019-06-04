@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 sudo: false
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
@@ -10,8 +10,8 @@ deploy:
   api_key:
     secure: Kq+MYZMK9Lz9UCKvnYijdmxb+7onHtdAAiVDcGfL+wZHA1nMa6g0n3QI11RyOE8hWX5asDivghs+5kkTCEdp54MpFIDd3XmP7vecRlWlFdSFl9wC+xC4nBik5FSqqQ/KMvjn4ZoLxopeNzjm+lhsLBdGWdWpa3HU0EKf3JZF2UU=
   file:
-    - "retext-pos.js"
-    - "retext-pos.min.js"
+    - 'retext-pos.js'
+    - 'retext-pos.min.js'
   on:
     tags: true
     node: '9.0'
