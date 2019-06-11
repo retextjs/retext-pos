@@ -125,13 +125,13 @@ function render(state) {
         ' • ',
         h(
           'a',
-          {href: 'https://github.com/retextjs/retext-pos/tree/src'},
+          {href: 'https://github.com/retextjs/retext-pos/tree/website'},
           'Fork this website'
         ),
         ' • ',
         h(
           'a',
-          {href: 'https://github.com/retextjs/retext-pos/blob/src/license'},
+          {href: 'https://github.com/retextjs/retext-pos/blob/website/license'},
           'MIT'
         ),
         ' • ',
