@@ -6,10 +6,12 @@
   "keywords": [
     "unified",
     "retext",
+    "retext-plugin",
     "part",
     "of",
     "speech",
     "pos",
+    "tag",
     "tagger"
   ],
   "repository": "retextjs/retext-pos",
