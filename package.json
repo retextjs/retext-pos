@@ -13,6 +13,7 @@
     "tagger"
   ],
   "repository": "retextjs/retext-pos",
+  "bugs": "https://github.com/retextjs/retext-pos/issues",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/unified"
