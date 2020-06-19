@@ -6,10 +6,10 @@ var u = require('unist-builder')
 var removePosition = require('unist-util-remove-position')
 var pos = require('.')
 
-test('pos()', function(t) {
+test('pos()', function (t) {
   var proc = retext().use(pos)
 
-  t.test('A sentence', function(st) {
+  t.test('A sentence', function (st) {
     var tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
 
     proc.runSync(tree)
@@ -63,7 +63,7 @@ test('pos()', function(t) {
     st.end()
   })
 
-  t.test('An empty sentence', function(st) {
+  t.test('An empty sentence', function (st) {
     var tree = u('RootNode', [
       u('ParagraphNode', [
         u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
