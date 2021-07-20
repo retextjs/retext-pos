@@ -14,6 +14,9 @@ Useful for other plugins as it adds information to [**nlcst**][nlcst] nodes.
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -23,25 +26,16 @@ npm install retext-pos
 ## Use
 
 ```js
-var retext = require('retext')
-var inspect = require('unist-util-inspect')
-var pos = require('retext-pos')
+import {retext} from 'retext'
+import {inspect} from 'unist-util-inspect'
+import retextPos from 'retext-pos'
 
 retext()
-  .use(pos)
-  .use(plugin)
-  .process('I went to the store, to buy 5.2 gallons of milk.', function (err) {
-    if (err) {
-      throw err;
-    }
-  })
-
-function plugin() {
-  return transformer
-  function transformer(tree) {
+  .use(retextPos)
+  .use(() => (tree) => {
     console.log(inspect(tree))
-  }
-}
+  })
+  .process('I went to the store, to buy 5.2 gallons of milk.')
 ```
 
 Yields:
@@ -90,7 +84,10 @@ RootNode[1] (1:1-1:49, 0-48)
 
 ## API
 
-### `retext().use(pos)`
+This package exports no identifiers.
+The default export is `retextPos`.
+
+### `unified().use(retextPos)`
 
 Add part-of-speech (POS) tags to [**word**][word]s using
 [`dariusk/pos-js`][posjs] at `node.data.partOfSpeech`.
