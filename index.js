@@ -1,14 +1,10 @@
-'use strict'
-
-var visit = require('unist-util-visit')
-var toString = require('nlcst-to-string')
-var posjs = require('pos')
-
-module.exports = pos
+import visit from 'unist-util-visit'
+import toString from 'nlcst-to-string'
+import posjs from 'pos'
 
 var tagger = new posjs.Tagger()
 
-function pos() {
+export default function retextPos() {
   return transformer
 }
 
@@ -36,7 +32,7 @@ function transformer(tree) {
     }
 
     // Apply tags if there are words.
-    if (values.length !== 0) {
+    if (values.length > 0) {
       tags = tagger.tag(values)
       length = tags.length
       index = -1

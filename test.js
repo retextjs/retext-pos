@@ -1,10 +1,8 @@
-'use strict'
-
-var test = require('tape')
-var retext = require('retext')
-var u = require('unist-builder')
-var removePosition = require('unist-util-remove-position')
-var pos = require('.')
+import test from 'tape'
+import retext from 'retext'
+import u from 'unist-builder'
+import removePosition from 'unist-util-remove-position'
+import pos from './index.js'
 
 test('pos()', function (t) {
   var proc = retext().use(pos)

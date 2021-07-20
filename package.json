@@ -24,6 +24,9 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
     "index.js"
   ],
@@ -41,7 +44,7 @@
     "tape": "^5.0.0",
     "unist-builder": "^2.0.0",
     "unist-util-remove-position": "^2.0.0",
-    "xo": "^0.32.0"
+    "xo": "^0.39.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier . --write && xo --fix",
@@ -59,7 +62,10 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": false
+    "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    }
   },
   "remarkConfig": {
     "plugins": [
