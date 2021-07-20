@@ -67,6 +67,7 @@ test('retext-pos', (t) => {
         u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
       ])
     ])
+    /** @type {unknown} */
     const exact = JSON.parse(JSON.stringify(tree))
 
     st.deepEqual(proc.runSync(tree), exact)

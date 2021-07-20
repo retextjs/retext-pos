@@ -1,13 +1,24 @@
 import {visit, SKIP} from 'unist-util-visit'
 import {toString} from 'nlcst-to-string'
+// @ts-expect-error: untyped.
 import posjs from 'pos'
 
 const tagger = new posjs.Tagger()
 
+/**
+ * Plugin to add part-of-speech (POS) tags.
+ *
+ * @type {import('unified').Plugin<[]>}
+ */
 export default function retextPos() {
+  /**
+   * @typedef {import('unist').Parent} Parent
+   * @typedef {import('unist').Node} Node
+   */
   return (tree) => {
-    visit(tree, 'SentenceNode', (node) => {
+    visit(tree, 'SentenceNode', (/** @type {Parent} */ node) => {
       const children = node.children
+      /** @type {Node[]} */
       const words = []
       let index = -1
 
