@@ -1,11 +1,11 @@
 import test from 'tape'
-import retext from 'retext'
-import u from 'unist-builder'
-import removePosition from 'unist-util-remove-position'
-import pos from './index.js'
+import {retext} from 'retext'
+import {u} from 'unist-builder'
+import {removePosition} from 'unist-util-remove-position'
+import retextPos from './index.js'
 
-test('pos()', function (t) {
-  var proc = retext().use(pos)
+test('retext-pos', function (t) {
+  var proc = retext().use(retextPos)
 
   t.test('A sentence', function (st) {
     var tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
