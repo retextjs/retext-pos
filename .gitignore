@@ -1,7 +1,5 @@
-.DS_Store
-*.log
 coverage/
 node_modules/
-retext-pos.js
-retext-pos.min.js
+.DS_Store
+*.log
 yarn.lock
