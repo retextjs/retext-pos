@@ -1,5 +1,5 @@
-import visit from 'unist-util-visit'
-import toString from 'nlcst-to-string'
+import {visit, SKIP} from 'unist-util-visit'
+import {toString} from 'nlcst-to-string'
 import posjs from 'pos'
 
 var tagger = new posjs.Tagger()
@@ -43,7 +43,7 @@ function transformer(tree) {
     }
 
     // Don’t enter sentences.
-    return visit.SKIP
+    return SKIP
   }
 
   // Patch a `partOfSpeech` property on `node`s.
