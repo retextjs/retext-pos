@@ -4,11 +4,11 @@ import {u} from 'unist-builder'
 import {removePosition} from 'unist-util-remove-position'
 import retextPos from './index.js'
 
-test('retext-pos', function (t) {
-  var proc = retext().use(retextPos)
+test('retext-pos', (t) => {
+  const proc = retext().use(retextPos)
 
-  t.test('A sentence', function (st) {
-    var tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
+  t.test('A sentence', (st) => {
+    const tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
 
     proc.runSync(tree)
     removePosition(tree, true)
@@ -61,13 +61,13 @@ test('retext-pos', function (t) {
     st.end()
   })
 
-  t.test('An empty sentence', function (st) {
-    var tree = u('RootNode', [
+  t.test('An empty sentence', (st) => {
+    const tree = u('RootNode', [
       u('ParagraphNode', [
         u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
       ])
     ])
-    var exact = JSON.parse(JSON.stringify(tree))
+    const exact = JSON.parse(JSON.stringify(tree))
 
     st.deepEqual(proc.runSync(tree), exact)
 
