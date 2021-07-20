@@ -111,9 +111,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/retextjs/retext-pos.svg
+[build-badge]: https://github.com/retextjs/retext-pos/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/retextjs/retext-pos
+[build]: https://github.com/retextjs/retext-pos/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-pos.svg
 
