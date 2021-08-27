@@ -1,3 +1,8 @@
+/**
+ * @typedef {import('nlcst').Root} Root
+ * @typedef {import('nlcst').Word} Word
+ */
+
 import {visit, SKIP} from 'unist-util-visit'
 import {toString} from 'nlcst-to-string'
 // @ts-expect-error: untyped.
@@ -8,17 +13,13 @@ const tagger = new posjs.Tagger()
 /**
  * Plugin to add part-of-speech (POS) tags.
  *
- * @type {import('unified').Plugin<[]>}
+ * @type {import('unified').Plugin<[], Root>}
  */
 export default function retextPos() {
-  /**
-   * @typedef {import('unist').Parent} Parent
-   * @typedef {import('unist').Node} Node
-   */
   return (tree) => {
-    visit(tree, 'SentenceNode', (/** @type {Parent} */ node) => {
+    visit(tree, 'SentenceNode', (node) => {
       const children = node.children
-      /** @type {Node[]} */
+      /** @type {Word[]} */
       const words = []
       let index = -1
 

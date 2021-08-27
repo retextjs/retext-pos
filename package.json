@@ -33,6 +33,7 @@
     "index.js"
   ],
   "dependencies": {
+    "@types/nlcst": "^1.0.0",
     "nlcst-to-string": "^3.0.0",
     "pos": "^0.4.2",
     "unified": "^10.0.0",
