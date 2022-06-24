@@ -19,7 +19,7 @@ export default function retextPos() {
   return (tree) => {
     visit(tree, 'SentenceNode', (node) => {
       const children = node.children
-      /** @type {Word[]} */
+      /** @type {Array<Word>} */
       const words = []
       let index = -1
 
