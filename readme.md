@@ -8,78 +8,135 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**retext**][retext] plugin to add part-of-speech (POS) tags.
+**[retext][]** plugin to add POS (part of speech) tags to words.
 
-Useful for other plugins as it adds information to [**nlcst**][nlcst] nodes.
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`unified().use(retextPos)`](#unifieduseretextpos)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a [unified][] ([retext][]) plugin to add part of speech tags
+to words.
+It uses [`dariusk/pos-js`][posjs] and adds `node.data.partOfSpeech` on
+**[Word][]s**.
+It works by checking each sentence, so its smarter that just passing one word
+through.
+
+## When should I use this?
+
+You can either use this plugin if another plugin, or your own plugin, needs
+POS tags!
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
 
 ```sh
 npm install retext-pos
 ```
 
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import retextPos from 'https://esm.sh/retext-pos@4'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import retextPos from 'https://esm.sh/retext-pos@4?bundle'
+</script>
+```
+
 ## Use
 
 ```js
+/**
+ * @type {import('nlcst').Root} Root
+ */
+
 import {retext} from 'retext'
 import {inspect} from 'unist-util-inspect'
 import retextPos from 'retext-pos'
 
-retext()
+await retext()
   .use(retextPos)
-  .use(() => (tree) => {
-    console.log(inspect(tree))
-  })
+  .use(myRetextPlugin)
   .process('I went to the store, to buy 5.2 gallons of milk.')
+
+/** @type {import('unified').Plugin<[], Root>} */
+function myRetextPlugin() {
+  return function (tree) {
+    console.log(inspect(tree))
+  }
+}
 ```
 
 Yields:
 
 ```txt
 RootNode[1] (1:1-1:49, 0-48)
-└─ ParagraphNode[1] (1:1-1:49, 0-48)
-   └─ SentenceNode[23] (1:1-1:49, 0-48)
-      ├─ WordNode[1] (1:1-1:2, 0-1) [data={"partOfSpeech":"PRP"}]
-      │  └─ TextNode: "I" (1:1-1:2, 0-1)
-      ├─ WhiteSpaceNode: " " (1:2-1:3, 1-2)
-      ├─ WordNode[1] (1:3-1:7, 2-6) [data={"partOfSpeech":"VBD"}]
-      │  └─ TextNode: "went" (1:3-1:7, 2-6)
-      ├─ WhiteSpaceNode: " " (1:7-1:8, 6-7)
-      ├─ WordNode[1] (1:8-1:10, 7-9) [data={"partOfSpeech":"TO"}]
-      │  └─ TextNode: "to" (1:8-1:10, 7-9)
-      ├─ WhiteSpaceNode: " " (1:10-1:11, 9-10)
-      ├─ WordNode[1] (1:11-1:14, 10-13) [data={"partOfSpeech":"DT"}]
-      │  └─ TextNode: "the" (1:11-1:14, 10-13)
-      ├─ WhiteSpaceNode: " " (1:14-1:15, 13-14)
-      ├─ WordNode[1] (1:15-1:20, 14-19) [data={"partOfSpeech":"NN"}]
-      │  └─ TextNode: "store" (1:15-1:20, 14-19)
-      ├─ PunctuationNode: "," (1:20-1:21, 19-20)
-      ├─ WhiteSpaceNode: " " (1:21-1:22, 20-21)
-      ├─ WordNode[1] (1:22-1:24, 21-23) [data={"partOfSpeech":"TO"}]
-      │  └─ TextNode: "to" (1:22-1:24, 21-23)
-      ├─ WhiteSpaceNode: " " (1:24-1:25, 23-24)
-      ├─ WordNode[1] (1:25-1:28, 24-27) [data={"partOfSpeech":"VB"}]
-      │  └─ TextNode: "buy" (1:25-1:28, 24-27)
-      ├─ WhiteSpaceNode: " " (1:28-1:29, 27-28)
-      ├─ WordNode[3] (1:29-1:32, 28-31) [data={"partOfSpeech":"CD"}]
-      │  ├─ TextNode: "5" (1:29-1:30, 28-29)
-      │  ├─ PunctuationNode: "." (1:30-1:31, 29-30)
-      │  └─ TextNode: "2" (1:31-1:32, 30-31)
-      ├─ WhiteSpaceNode: " " (1:32-1:33, 31-32)
-      ├─ WordNode[1] (1:33-1:40, 32-39) [data={"partOfSpeech":"NNS"}]
-      │  └─ TextNode: "gallons" (1:33-1:40, 32-39)
-      ├─ WhiteSpaceNode: " " (1:40-1:41, 39-40)
-      ├─ WordNode[1] (1:41-1:43, 40-42) [data={"partOfSpeech":"IN"}]
-      │  └─ TextNode: "of" (1:41-1:43, 40-42)
-      ├─ WhiteSpaceNode: " " (1:43-1:44, 42-43)
-      ├─ WordNode[1] (1:44-1:48, 43-47) [data={"partOfSpeech":"NN"}]
-      │  └─ TextNode: "milk" (1:44-1:48, 43-47)
-      └─ PunctuationNode: "." (1:48-1:49, 47-48)
+└─0 ParagraphNode[1] (1:1-1:49, 0-48)
+    └─0 SentenceNode[23] (1:1-1:49, 0-48)
+        ├─0 WordNode[1] (1:1-1:2, 0-1)
+        │   │ data: {"partOfSpeech":"PRP"}
+        │   └─0 TextNode "I" (1:1-1:2, 0-1)
+        ├─1 WhiteSpaceNode " " (1:2-1:3, 1-2)
+        ├─2 WordNode[1] (1:3-1:7, 2-6)
+        │   │ data: {"partOfSpeech":"VBD"}
+        │   └─0 TextNode "went" (1:3-1:7, 2-6)
+        ├─3 WhiteSpaceNode " " (1:7-1:8, 6-7)
+        ├─4 WordNode[1] (1:8-1:10, 7-9)
+        │   │ data: {"partOfSpeech":"TO"}
+        │   └─0 TextNode "to" (1:8-1:10, 7-9)
+        ├─5 WhiteSpaceNode " " (1:10-1:11, 9-10)
+        ├─6 WordNode[1] (1:11-1:14, 10-13)
+        │   │ data: {"partOfSpeech":"DT"}
+        │   └─0 TextNode "the" (1:11-1:14, 10-13)
+        ├─7 WhiteSpaceNode " " (1:14-1:15, 13-14)
+        ├─8 WordNode[1] (1:15-1:20, 14-19)
+        │   │ data: {"partOfSpeech":"NN"}
+        │   └─0 TextNode "store" (1:15-1:20, 14-19)
+        ├─9 PunctuationNode "," (1:20-1:21, 19-20)
+        ├─10 WhiteSpaceNode " " (1:21-1:22, 20-21)
+        ├─11 WordNode[1] (1:22-1:24, 21-23)
+        │   │ data: {"partOfSpeech":"TO"}
+        │   └─0 TextNode "to" (1:22-1:24, 21-23)
+        ├─12 WhiteSpaceNode " " (1:24-1:25, 23-24)
+        ├─13 WordNode[1] (1:25-1:28, 24-27)
+        │   │ data: {"partOfSpeech":"VB"}
+        │   └─0 TextNode "buy" (1:25-1:28, 24-27)
+        ├─14 WhiteSpaceNode " " (1:28-1:29, 27-28)
+        ├─15 WordNode[3] (1:29-1:32, 28-31)
+        │   │ data: {"partOfSpeech":"CD"}
+        │   ├─0 TextNode "5" (1:29-1:30, 28-29)
+        │   ├─1 PunctuationNode "." (1:30-1:31, 29-30)
+        │   └─2 TextNode "2" (1:31-1:32, 30-31)
+        ├─16 WhiteSpaceNode " " (1:32-1:33, 31-32)
+        ├─17 WordNode[1] (1:33-1:40, 32-39)
+        │   │ data: {"partOfSpeech":"NNS"}
+        │   └─0 TextNode "gallons" (1:33-1:40, 32-39)
+        ├─18 WhiteSpaceNode " " (1:40-1:41, 39-40)
+        ├─19 WordNode[1] (1:41-1:43, 40-42)
+        │   │ data: {"partOfSpeech":"IN"}
+        │   └─0 TextNode "of" (1:41-1:43, 40-42)
+        ├─20 WhiteSpaceNode " " (1:43-1:44, 42-43)
+        ├─21 WordNode[1] (1:44-1:48, 43-47)
+        │   │ data: {"partOfSpeech":"NN"}
+        │   └─0 TextNode "milk" (1:44-1:48, 43-47)
+        └─22 PunctuationNode "." (1:48-1:49, 47-48)
 ```
 
 ## API
@@ -89,8 +146,19 @@ The default export is `retextPos`.
 
 ### `unified().use(retextPos)`
 
-Add part-of-speech (POS) tags to [**word**][word]s using
-[`dariusk/pos-js`][posjs] at `node.data.partOfSpeech`.
+Add POS (part of speech) tags to words.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It does not export additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Contribute
 
@@ -136,21 +204,27 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [health]: https://github.com/retextjs/.github
 
-[contributing]: https://github.com/retextjs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/retextjs/.github/blob/main/contributing.md
 
-[support]: https://github.com/retextjs/.github/blob/HEAD/support.md
+[support]: https://github.com/retextjs/.github/blob/main/support.md
 
-[coc]: https://github.com/retextjs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/retextjs/.github/blob/main/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
 
-[retext]: https://github.com/retextjs/retext
+[unified]: https://github.com/unifiedjs/unified
 
-[nlcst]: https://github.com/syntax-tree/nlcst
+[retext]: https://github.com/retextjs/retext
 
 [word]: https://github.com/syntax-tree/nlcst#word
 
