@@ -8,6 +8,12 @@ import {removePosition} from 'unist-util-remove-position'
 import retextPos from './index.js'
 
 test('retext-pos', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+      'default'
+    ])
+  })
+
   await t.test('should work', async function () {
     const tree = new ParseEnglish().parse(
       'I went to the store, to buy 5.2 gallons of milk.'
