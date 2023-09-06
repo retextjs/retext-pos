@@ -11,7 +11,7 @@ test('retext-pos', (t) => {
     const tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
 
     proc.runSync(tree)
-    removePosition(tree, true)
+    removePosition(tree, {force: true})
 
     st.deepEqual(
       tree,
