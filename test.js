@@ -1,19 +1,23 @@
-import test from 'tape'
-import {retext} from 'retext'
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import structuredClone from '@ungap/structured-clone'
+import {ParseEnglish} from 'parse-english'
+import {unified} from 'unified'
 import {u} from 'unist-builder'
 import {removePosition} from 'unist-util-remove-position'
 import retextPos from './index.js'
 
-test('retext-pos', (t) => {
-  const proc = retext().use(retextPos)
+test('retext-pos', async function (t) {
+  await t.test('should work', async function () {
+    const tree = new ParseEnglish().parse(
+      'I went to the store, to buy 5.2 gallons of milk.'
+    )
 
-  t.test('A sentence', (st) => {
-    const tree = proc.parse('I went to the store, to buy 5.2 gallons of milk.')
+    await unified().use(retextPos).run(tree)
 
-    proc.runSync(tree)
     removePosition(tree, {force: true})
 
-    st.deepEqual(
+    assert.deepEqual(
       tree,
       u('RootNode', [
         u('ParagraphNode', [
@@ -57,23 +61,18 @@ test('retext-pos', (t) => {
         ])
       ])
     )
-
-    st.end()
   })
 
-  t.test('An empty sentence', (st) => {
+  await t.test('should support an empty sentence', async function () {
     const tree = u('RootNode', [
       u('ParagraphNode', [
         u('SentenceNode', [u('SymbolNode', '&'), u('PunctuationNode', '.')])
       ])
     ])
-    /** @type {unknown} */
-    const exact = JSON.parse(JSON.stringify(tree))
+    const expected = structuredClone(tree)
 
-    st.deepEqual(proc.runSync(tree), exact)
+    await unified().use(retextPos).run(tree)
 
-    st.end()
+    assert.deepEqual(tree, expected)
   })
-
-  t.end()
 })
