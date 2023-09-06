@@ -2,14 +2,14 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import structuredClone from '@ungap/structured-clone'
 import {ParseEnglish} from 'parse-english'
+import retextPos from 'retext-pos'
 import {unified} from 'unified'
 import {u} from 'unist-builder'
 import {removePosition} from 'unist-util-remove-position'
-import retextPos from './index.js'
 
 test('retext-pos', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+    assert.deepEqual(Object.keys(await import('retext-pos')).sort(), [
       'default'
     ])
   })
