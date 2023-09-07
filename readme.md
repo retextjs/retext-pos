@@ -49,14 +49,14 @@ npm install retext-pos
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import retextPos from 'https://esm.sh/retext-pos@4'
+import retextPos from 'https://esm.sh/retext-pos@5'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import retextPos from 'https://esm.sh/retext-pos@4?bundle'
+  import retextPos from 'https://esm.sh/retext-pos@5?bundle'
 </script>
 ```
 
